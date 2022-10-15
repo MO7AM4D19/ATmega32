@@ -6,6 +6,7 @@
 #ifndef TMR_REGISTER_H
 #define TMR_REGISTER_H
 
+/*Timer 0 registers*/
 #define OCR0                *((volatile u8*)0x5C)
 
 #define TIMSK               *((volatile u8*)0x59)
@@ -27,5 +28,9 @@
 #define TCCR0_FOC           7
 
 #define TCNT0               *((volatile u8*)0x52)
+
+/*timer 1 registers*/
+
+
 
 #endif

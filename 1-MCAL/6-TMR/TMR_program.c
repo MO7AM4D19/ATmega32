@@ -45,9 +45,12 @@ void TMR0_voidInit()
     TCCR0 |= (TMR0_CTC_OUT<<4);
     #elif TMR0_MODE == TMR_FAST_PWM
     TCCR0 |= (TMR0_FAST_PWM_OUT<<4);
+    #elif TMR0_MODE == TMR_PWM_PHASE_CORRECT
+    TCCR0 |= (TMR0_PHASE_PWM_OUT<<4);
     #endif
 
     /* Enabling Timer Intrupt*/
+    
     #if TMR0_MODE == TMR_NORMAL
     SET_BIT(TIMSK,TIMSK_TOIE0);
     CLR_BIT(TIMSK,TIMSK_OCIE0);
@@ -56,6 +59,9 @@ void TMR0_voidInit()
     SET_BIT(TIMSK,TIMSK_OCIE0);
     #elif TMR0_MODE == TMR_FAST_PWM
     SET_BIT(TIMSK,TIMSK_TOIE0);
+    SET_BIT(TIMSK,TIMSK_OCIE0);
+    #elif TMR0_MODE == TMR_PWM_PHASE_CORRECT
+    CLR_BIT(TIMSK,TIMSK_TOIE0);
     SET_BIT(TIMSK,TIMSK_OCIE0);
     #endif
 

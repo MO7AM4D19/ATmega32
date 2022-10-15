@@ -31,8 +31,15 @@
 #define TMR_FAST_PWM_NON_INVERT             2
 #define TMR_FAST_PWM_INVERT                 3
 
+#define TMR_PHASE_PWM_OC0_OFF               0
+#define TMR_PHASE_PWM_SCS                   2
+#define TMR_PHASE_PWM_CSC                   3
+
 #define TMR_COMPARE_MATCH                   0
 #define TMR_OVERFLOW                        1
+
+#define TMR_INTRUPT_DISABLE                 0
+#define TMR_INTRUPT_ENABLE                  1
 
 
 void TMR0_voidInit();
