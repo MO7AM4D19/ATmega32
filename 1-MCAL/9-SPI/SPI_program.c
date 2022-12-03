@@ -9,6 +9,9 @@
 #include "SPI_register.h"
 #include "SPI_private.h"
 
+void (*SPI_pfAsynch)(void) = NULL;
+u8* SPI_pu8Received = NULL;
+
 void SPI_voidInit()
 {
     SPCR = 0;
@@ -67,5 +70,26 @@ u8 SPI_u8TranciveSynch(u8* Copy_pu8Received,u8 Copy_u8Sent)
 
 u8 SPI_u8TranciveAsynch(u8* Copy_pu8Received,u8 Copy_u8Sent)
 {
+    u8 Local_u8ErrorState = OK;
+    if(NULL == Copy_pu8Received)
+    {
+        Local_u8ErrorState = NULL_POINTER;
+    }
+    else
+    {
+        SPI_pu8Received = Copy_pu8Received;
+        SPDR = Copy_u8Sent;
+    }
 
+    return Local_u8ErrorState;
+}
+
+void __vector_12(void) __attribute__((signal));
+void __vector_12(void)
+{
+	if (NULL != SPI_pfAsynch)
+	{
+		*SPI_pu8Received = SPDR;
+        SPI_pfAsynch();
+	}
 }
