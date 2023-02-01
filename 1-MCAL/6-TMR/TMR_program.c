@@ -9,6 +9,7 @@
 #include "TMR_register.h"
 #include "BIT_MATH.h"
 
+/************************************Timer 0 *************************/
 void (* TMR0_fpOverflowFunction)(void) = NULL;
 void (* TMR0_fpCompareMatchFunction)(void) = NULL;
 
@@ -104,4 +105,13 @@ void __vector_11(void) __attribute__((signal));
 void __vector_11(void)
 {
     TMR0_fpOverflowFunction();
+}
+
+/***************************************************************/
+
+/***************************Timer 1*****************************/
+
+void TMR1_voidInit()
+{
+    
 }
