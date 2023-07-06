@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "*.c": "c",
+        "RTOS_config.H": "cpp",
+        "std_types.h": "c"
+    }
+}
